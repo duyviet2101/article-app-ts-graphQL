@@ -43,6 +43,18 @@ export const resolvers = {
         new: false
       });
       return newArticle;
+    }),
+    updateArticle: (async (_, args) => {
+      const { id, article } = args;
+
+      const newArticle = await Article.findOneAndUpdate({
+        _id: id
+      }, {
+        ...article
+      }, {
+        new: true
+      });
+      return newArticle;
     })
   }
 };
