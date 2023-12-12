@@ -5,7 +5,8 @@ const articleSchema = new mongoose.Schema({
   avatar: String,
   description: String,
   categoryId: String,
-  deleted: Boolean
+  deleted: Boolean,
+  deletedAt: Date
 });
 
 const Article = mongoose.model("Article", articleSchema, "articles");

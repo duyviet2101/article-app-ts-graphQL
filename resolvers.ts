@@ -30,6 +30,19 @@ export const resolvers = {
       });
 
       return newArticle;
+    }),
+    deleteArticle: (async (_, args) => {
+      const { id } = args;
+
+      const newArticle = await Article.findOneAndUpdate({
+        _id: id
+      }, {
+        deleted: true,
+        deletedAt: new Date()
+      }, {
+        new: false
+      });
+      return newArticle;
     })
   }
 };
