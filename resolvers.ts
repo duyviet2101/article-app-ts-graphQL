@@ -20,5 +20,16 @@ export const resolvers = {
       });
       return article;
     }
+  },
+  Mutation: {
+    createArticle: (async (_, args) => {
+      const { article } = args;
+
+      const newArticle = await Article.create({
+        ...article
+      });
+
+      return newArticle;
+    })
   }
 };
