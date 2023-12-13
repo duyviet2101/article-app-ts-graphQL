@@ -29,6 +29,28 @@ export const resolversUser = {
         email: newUser.email,
         token: newUser.token
       }
+    },
+    loginUser: async (_, args) => {
+      const { user } = args;
+      user.password = md5(user.password);
+      const userExist = await User.findOne({
+        email: user.email,
+        password: user.password
+      });
+      if (!userExist) {
+        return {
+          code: 400,
+          message: "Email or password is incorrect"
+        }
+      }
+      return {
+        code: 200,
+        message: "Thành công!",
+        id: userExist.id,
+        fullName: userExist.fullName,
+        email: userExist.email,
+        token: userExist.token
+      }
     }
   }
 }
