@@ -22,7 +22,8 @@ const startServer = async () => {
       return {
         ...req
       }
-    }
+    },
+    introspection: true, //! enables introspection of the schema
   });
 
   await apolloServer.start();
